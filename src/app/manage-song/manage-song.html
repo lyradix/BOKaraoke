@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="submit" class="manageSongs">
+        <input type="file" id="fileInput" name="fileInput" accept=".csv" />
+        <button class="importBtn">Importer</button>
+    </form>
+    <div class="songList">
+        <h2>Liste des chansons:</h2>
+        <ul class="songUl">
+            <li class="songLi">Chanson 1<button class="deleteBtn">Supprimer</button></li>
+            <li class="songLi">Chanson 2 <button class="deleteBtn">Supprimer</button></li>
+            <li class="songLi">Chanson 3 <button class="deleteBtn">Supprimer</button></li>
+        </ul>
+    </div>
+    <div class="navBtnContainer">
+        <button class="navBtn">
+            <h2>
+              <a [routerLink]="['/EventForm']">
+              Retour à l'événement
+               </a>
+            </h2>
+        </button>
+    </div>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .manageSongs {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .importBtn {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .songList {
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .songUl {
+               /* display: flex; */
+            flex-direction: column;
+            align-items: center;
+            justify-self: center;
+            list-style-type: none;
+            padding: 0;
+         
+        }
+
+        .songLi {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        .navBtnContainer {
+            margin-top: 20px;
+        }
+
+        .navBtn {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        @media screen and (max-width: 600px) {
+            .manageSongs {
+                max-width: 100%;
+                padding: 0 10px;
+            }
+        }
+    </style>
+</body>
+</html>
