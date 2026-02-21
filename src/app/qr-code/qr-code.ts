@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-qr-code',
@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './qr-code.scss',
 })
 export class QrCode {
-
+  constructor(public router: Router) {}
 }
