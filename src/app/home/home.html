@@ -12,7 +12,11 @@
 <div class="home">
 
     <button>
-        <h2>Animateur</h2>
+        <h2>
+          <a [routerLink]="['/EventForm']">
+          Animateur
+           </a>
+        </h2>
     </button>
   
 
@@ -24,7 +28,6 @@
    </button>
 
 </div>
-
 
 <style>
   body {
@@ -54,5 +57,18 @@
     justify-content: center;
     gap: 50px;
   }
+
+        @media screen and (max-width: 600px) {
+            body {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            form{
+                width: 80%;
+                padding: 0 20px;
+              }
+
+        } 
 </style>
 </html>
