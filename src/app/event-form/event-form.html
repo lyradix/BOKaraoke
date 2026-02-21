@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="submit" class="eventForm">
+        <label for="eventName">Nom de l'événement:</label>
+        <input type="text" id="eventName" name="eventName" required>
+
+        <label for="eventDate">Date de l'événement:</label>
+        <input type="date" id="eventDate" name="eventDate" required>
+
+        <label for="eventLocation">Lieu de l'événement:</label>
+        <input type="text" id="eventLocation" name="eventLocation" required>
+
+        <button type="submit">Générer QR code</button>
+    </form>
+
+    <div class="qrCode">
+        <h2>QR Code généré:</h2>
+        
+    </div>
+
+    <style>
+        .eventForm {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .eventForm label {
+            margin-top: 10px;
+        }
+
+        .eventForm input {
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .eventForm button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .eventForm button:hover {
+            background-color: #0056b3;
+        }
+
+        .qrCode {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</body>
+</html>
