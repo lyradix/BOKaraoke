@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-qr-code',
   imports: [RouterLink],
