@@ -6,29 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="submit" class="eventForm">
+    <form (submit)="onSubmit($event)" class="eventForm">
         <label for="eventName">Nom de l'événement:</label>
-        <input type="text" id="eventName" name="eventName" required>
+        <input type="text" id="eventName" name="eventName" required
+        (change)="name($event)">
 
         <label for="eventDate">Date de l'événement:</label>
-        <input type="date" id="eventDate" name="eventDate" required>
+        <input type="date" id="eventDate" name="eventDate" required
+        (change)="date($event)">
 
         <label for="eventLocation">Lieu de l'événement:</label>
-        <input type="text" id="eventLocation" name="eventLocation" required>
+        <input type="text" id="eventLocation" name="eventLocation" required
+        (change)="place($event)">
 
-        <button type="submit">Générer QR code</button>
+        <button type="submit">soumettre</button>
         
     </form>
 
-    <div class="qrCode">
-        <h2>QR Code généré:</h2>
-         <div class="qrCode">
-
-               <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
-                <a [href]="qrCodeDownloadLink" download="qrcode">Download</a>
-
-            </div>
-    </div>
+   
 
     <div class="navBtnContainer">
 

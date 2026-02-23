@@ -14,11 +14,14 @@
                 <p class="place">lieu</p>
             </div>
             <div class="qrCode">
-               <button class="qrcodeBtn">
-                <h2><a href="http://localhost:4200/Contact" 
-                  >QrCode</a></h2>
-               </button>
+
+         <div class="qrCode">
+
+               <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+               
+
             </div>
+    </div>
            
         </div>
 
