@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="submit" class="manageSongs">
-        <input type="file" id="fileInput" name="fileInput" accept=".csv" />
-        <button class="importBtn">Importer</button>
-    </form>
+<form (submit)="onSubmit($event)" class="manageSongs">
+  <input type="file" accept=".csv" (change)="onFileSelected($event)" />
+  <button type="submit" class="importBtn">Importer les chansons</button>
+</form>
     <div class="songList">
         <h2>Liste des chansons:</h2>
         <ul class="songUl">
@@ -21,9 +21,9 @@
     <div class="navBtnContainer">
         <button class="navBtn">
             <h2>
-              <a [routerLink]="['/EventForm']">
+              <!-- <a [routerLink]="['/EventForm']">
               Retour à l'événement
-               </a>
+               </a> -->
             </h2>
         </button>
     </div>
