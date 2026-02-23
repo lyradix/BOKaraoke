@@ -11,20 +11,17 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   styleUrl: './event-form.scss',
 })
 export class EventForm {
-  // public myAngularxQrCode: string = null;
-  // constructor () {
 
-  //   this.myAngularxQrCode = 'http://localhost:4200/Contact';
-  // }
-
-   public myAngularxQrCode: string = "";
+  public myAngularxQrCode: string = "";
   public qrCodeDownloadLink: SafeUrl = "";
 
   constructor (private sanitizer: DomSanitizer) {
-    this.myAngularxQrCode = 'http://192.168.1.164:4200/Contact';
+    this.myAngularxQrCode = 'http://192.168.1.164:54348/Contact';
   }
 
   onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
   }
+
+  
 }
