@@ -12,11 +12,15 @@
 </form>
     <div class="songList">
         <h2>Liste des chansons:</h2>
-        <ul class="songUl">
-            <li class="songLi">Chanson 1<button class="deleteBtn">Supprimer</button></li>
-            <li class="songLi">Chanson 2 <button class="deleteBtn">Supprimer</button></li>
-            <li class="songLi">Chanson 3 <button class="deleteBtn">Supprimer</button></li>
-        </ul>
+
+<ul class="songUl">
+  @for (song of songData; track $index) {
+    <li class="songLi">
+      <span>{{ song.title }}</span>
+    </li>
+  }
+</ul>
+
     </div>
     <div class="navBtnContainer">
         <button class="navBtn">

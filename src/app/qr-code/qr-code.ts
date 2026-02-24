@@ -17,6 +17,9 @@ export class QrCode {
   public qrCodeDownloadLink: SafeUrl = "";
    onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
+
+    
+
   }
 
  
