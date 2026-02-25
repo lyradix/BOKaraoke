@@ -15,14 +15,46 @@ export class ManageSong implements OnInit {
   selectedFile: File | null = null;
   songData: any[] = [];
   
-  private apiUrl = 'http://192.168.1.164:8000';
-
-  constructor(private http: HttpClient) {}
-
+  public apiUrl = 'http://192.168.1.164:8000';
   ngOnInit() {
-    console.log("Component loaded");
     this.displaySongs();
+    //ctrl+s manageSong.html to save the file and refresh the page - hot reload doesn't work for some reason
+    
   }
+  constructor(private http: HttpClient) {}
+displaySongs() {
+    this.http.get(`${this.apiUrl}/songs`).subscribe(
+      (response: any) => {
+        this.songData = response;
+        console.log('Chansons récupérées:', this.songData);
+        const songValue = this.songData.map((song: any) => song.title);
+        console.log("Titres:", songValue);
+      },
+      (error) => {    
+        console.error('Erreur lors de la récupération des chansons:', error);
+      }
+    );
+  }
+
+
+
+  deleteSong(songId: number) {
+    this.http.delete(`${this.apiUrl}/deleteSong/${songId}`).subscribe(
+      () => {
+        const deletedSong = this.songData.find(song => song.id === songId);
+        this.songData = this.songData.filter(song => song.id !== songId);
+                alert(`La chanson ${deletedSong?.title} a bien été supprimée`);
+                //refresh the song list after deletion
+                this.displaySongs();
+        console.log(`La chanson ${deletedSong?.title} a bien été supprimée`);
+      },
+      (error) => {
+        console.error('Error deleting song:', error);
+      }
+    );
+  }
+
+
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -49,29 +81,5 @@ export class ManageSong implements OnInit {
     }
   }
 
-  displaySongs() {
-    this.http.get(`${this.apiUrl}/songs`).subscribe(
-      (response: any) => {
-        this.songData = response;
-        console.log('Chansons récupérées:', this.songData);
-        const songValue = this.songData.map((song: any) => song.title);
-        console.log("Titres:", songValue);
-      },
-      (error) => {    
-        console.error('Erreur lors de la récupération des chansons:', error);
-      }
-    );
-  }
-
-  deleteSong(songId: number) {
-    this.http.delete(`${this.apiUrl}/deleteSong/${songId}`).subscribe(
-      () => {
-        this.songData = this.songData.filter(song => song.id !== songId);
-        console.log('Song deleted successfully');
-      },
-      (error) => {
-        console.error('Error deleting song:', error);
-      }
-    );
-  }
+  
 }
