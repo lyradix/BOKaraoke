@@ -1,56 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-manage-song',
   standalone: true,
-  imports: [ CommonModule,RouterLink, HttpClientModule],
+  imports: [ CommonModule,RouterLink],
   templateUrl: './manage-song.html',
   styleUrl: './manage-song.scss',
 })
 export class ManageSong implements OnInit {
+
+
+  
   selectedFile: File | null = null;
   songData: any[] = [];
   
   public apiUrl = 'http://192.168.1.164:8000';
-  ngOnInit() {
-    this.displaySongs();
-    //ctrl+s manageSong.html to save the file and refresh the page - hot reload doesn't work for some reason
-    
+ 
+  constructor(
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef
+  ) {
+
   }
-  constructor(private http: HttpClient) {}
+
+   ngOnInit() {
+    this.displaySongs();
+  }
+
+
 displaySongs() {
-    this.http.get(`${this.apiUrl}/songs`).subscribe(
-      (response: any) => {
-        this.songData = response;
-        console.log('Chansons récupérées:', this.songData);
+    this.http.get(`${this.apiUrl}/songs`).
+    subscribe(
+      (result: any) => {
+        this.songData = result;
+         this.cdr.detectChanges();
         const songValue = this.songData.map((song: any) => song.title);
-        console.log("Titres:", songValue);
       },
-      (error) => {    
-        console.error('Erreur lors de la récupération des chansons:', error);
-      }
+  
     );
   }
 
 
 
   deleteSong(songId: number) {
-    this.http.delete(`${this.apiUrl}/deleteSong/${songId}`).subscribe(
+    this.http.delete(`${this.apiUrl}/deleteSong/${songId}`).
+    subscribe(
       () => {
         const deletedSong = this.songData.find(song => song.id === songId);
         this.songData = this.songData.filter(song => song.id !== songId);
                 alert(`La chanson ${deletedSong?.title} a bien été supprimée`);
                 //refresh the song list after deletion
                 this.displaySongs();
-        console.log(`La chanson ${deletedSong?.title} a bien été supprimée`);
       },
-      (error) => {
-        console.error('Error deleting song:', error);
-      }
     );
   }
 
