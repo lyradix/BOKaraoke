@@ -11,6 +11,6 @@ export const routes: Routes = [
      {path: 'QrCode', component: QrCode},
      {path: 'EventForm', component: EventForm},
      {path: 'EventDay', component: EventDay},
-     {path: 'ManageSong', component: ManageSong},
+     { path: 'ManageSong', loadComponent: () => import('./manage-song/manage-song').then(m => m.ManageSong) },
      { path: '**', redirectTo: '' }
 ];
