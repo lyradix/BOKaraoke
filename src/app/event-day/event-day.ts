@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-day',
@@ -8,5 +9,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './event-day.scss',
 })
 export class EventDay {
+
+  songData: any[] = [];
+
+  constructor(private http: HttpClient,
+    private cdr: ChangeDetectorRef) {
+
+  }
+
+
+  
 
 }
